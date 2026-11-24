@@ -56,7 +56,7 @@ services:
       - "${ROMM_PORT:-8082}:8080"
 
   gamarr:
-    image: ghcr.io/gamarr/gamarr:latest
+    image: ghcr.io/gamarr-app/gamarr:latest
     container_name: gamarr
     restart: unless-stopped
     environment:
