@@ -69,4 +69,4 @@ services:
       - ${MEDIA_DIR:-/mnt/nas/media}/downloads:/downloads
       - ${MEDIA_DIR:-/mnt/nas/media}/games:/games
     ports:
-      - "${GAMARR_PORT:-8790}:8787"
+      - "${GAMARR_PORT:-8790}:6767"
