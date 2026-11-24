@@ -50,7 +50,7 @@ services:
       - ${DATA_DIR:-./data}/romm/resources:/romm/resources
       - ${DATA_DIR:-./data}/romm/redis_data:/redis_data
       - ${DATA_DIR:-./data}/romm/config:/romm/config
-      - ${MEDIA_DIR:-/mnt/nas/media}/games:/romm/library
+      - ${MEDIA_DIR:-/mnt/nas/media}/games:/library
       - ${MEDIA_DIR:-/mnt/nas/media}/games/saves:/romm/saves
     ports:
       - "${ROMM_PORT:-8082}:8080"
