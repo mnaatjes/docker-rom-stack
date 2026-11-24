@@ -84,21 +84,21 @@ Governed by:
 
 ## Phase 4: Container Stack Deployment & Convergence (`prd-seed-01.lan`)
 
-*Executed by operator via `ansible-playbook playbooks/deploy_stack.yml -e stack_name=docker-rom-stack`.*
+*Executed by operator via `ansible-playbook playbooks/deploy_compose_stacks.yml --limit prd-seed-01.lan`.*
 
-- [ ] **Preflight Verification:**
-  - [ ] Verify `docker-torrent` is active and Gluetun reports `healthy`.
-  - [ ] Verify `docker-arr-suite:prowlarr` is accessible on `:9696`.
-  - [ ] Verify NFS mount `/mnt/nas/media` is active and writable by UID `999:110`.
-- [ ] **Stack Deployment:**
-  - [ ] Ansible synchronizes repository code to `/opt/homelab/prod/compose/docker-rom-stack/`.
-  - [ ] Ansible renders production `.env` with vaulted secrets.
-  - [ ] Ansible provisions persistent directories under `/opt/homelab/prod/data/docker-rom-stack/`.
-  - [ ] Docker Compose pulls images and converges containers (`romm-db`, `romm`, `gamarr`).
-- [ ] **Health Check Verification:**
-  - [ ] Confirm `romm-db` passes internal healthcheck.
-  - [ ] Confirm `romm` responds on `http://192.168.1.52:8082`.
-  - [ ] Confirm `gamarr` responds on `http://192.168.1.52:8790`.
+- [x] **Preflight Verification:**
+  - [x] Verify `docker-torrent` is active and Gluetun reports `healthy`.
+  - [x] Verify `docker-arr-suite:prowlarr` is accessible on `:9696`.
+  - [x] Verify NFS mount `/mnt/nas/media` is active and writable by UID `999:110`.
+- [x] **Stack Deployment:**
+  - [x] Ansible synchronizes repository code to `/opt/homelab/prod/compose/docker-rom-stack/`.
+  - [x] Ansible renders production `.env` with vaulted secrets.
+  - [x] Ansible provisions persistent directories under `/opt/homelab/prod/data/docker-rom-stack/`.
+  - [x] Docker Compose pulls images and converges containers (`romm-db`, `romm`, `gamarr`).
+- [x] **Health Check Verification:**
+  - [x] Confirm `romm-db` passes internal healthcheck.
+  - [x] Confirm `romm` responds on `http://192.168.1.52:8082` (HTTP 200).
+  - [x] Confirm `gamarr` responds on `http://192.168.1.52:8790` (HTTP 401 Auth Challenge).
 
 ---
 
