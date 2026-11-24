@@ -36,30 +36,31 @@ Governed by:
 
 *Development strictly in `~/src/github.com/mnaatjes/homelab-ops/` on dedicated branch `feat/rom-stack-deployment`.*
 
-- [ ] **Branch Initialization:** Checkout new working branch `git checkout -b feat/rom-stack-deployment`.
-- [ ] **SSOT Workload Registration:**
-  - [ ] Add `docker-rom-stack` declaration to `group_vars/all/workloads/compose_stacks.yml`:
+- [x] **Branch Initialization:** Checkout new working branch `git checkout -b feat/rom-stack-deployment`.
+- [x] **SSOT Workload Registration:**
+  - [x] Add `docker-rom-stack` declaration to `group_vars/all/workloads/compose_stacks.yml`:
     - Target host: `prd-seed-01.lan`
     - Ingress ports: `[8082, 8790]`
     - PUID: `999`, PGID: `110`
     - Volume mappings: `/mnt/nas/media` and `/opt/homelab/prod/data/docker-rom-stack`
     - Health check: `http://192.168.1.52:8082/api/health`
     - Backup retention: 5 snapshots
-- [ ] **Ansible Vault Declarations:**
-  - [ ] Add encrypted credential templates in `group_vars/all/vault.yml`:
+- [x] **Ansible Vault Declarations:**
+  - [x] Add encrypted credential templates in `group_vars/all/vault.yml`:
     - `vault_romm.auth_secret_key`
     - `vault_romm.db_root_passwd`
     - `vault_romm.db_passwd`
     - `vault_romm.igdb_client_id`
     - `vault_romm.igdb_client_secret`
     - `vault_romm.steamgriddb_api_key`
-- [ ] **NAS Storage Allocation Role (`roles/nfs_exports` or dedicated):**
-  - [ ] Ensure `/storage/media/games/{roms,bios,saves}` directory structure is codified.
-  - [ ] Codify declarative export rule for `/storage/media/games` with `all_squash,anonuid=999,anongid=110`.
-- [ ] **Workstation Client Mount Role (`roles/workstation_emulation`):**
-  - [ ] Codify persistent NFSv4 mount task targeting `192.168.1.103:/storage/media/games` -> `/home/michael/Emulation`.
-  - [ ] Codify Flatpak sandbox filesystem override: `flatpak override --filesystem=/home/michael/Emulation net.pcsx2.PCSX2`.
-- [ ] **Operator Handoff Gate:** Notify operator that code changes are staged and ready for review/merge.
+- [x] **NAS Storage Allocation Role (`roles/nfs_exports` or dedicated):**
+  - [x] Ensure `/storage/media/games/{roms,bios,saves}` directory structure is codified.
+  - [x] Codify declarative export rule for `/storage/media/games` with `all_squash,anonuid=999,anongid=110`.
+- [x] **Workstation Client Mount Role (`roles/workstation_emulation`):**
+  - [x] Codify persistent NFSv4 mount task targeting `192.168.1.103:/storage/media/games` -> `/home/michael/Emulation`.
+  - [x] Codify Flatpak sandbox filesystem override: `flatpak override --filesystem=/home/michael/Emulation net.pcsx2.PCSX2`.
+- [x] **Operator Handoff Gate:** Notify operator that code changes are staged and ready for review/merge.
+- [x] **PR Review & Integration:** PR #124 merged, `main` fast-forwarded, and deployed to `/opt/homelab/prod/ops/`.
 
 ---
 
