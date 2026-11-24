@@ -128,14 +128,14 @@ Governed by:
 
 ## Phase 6: Client Workstation & Emulation Streaming Setup (`michael-desktop`)
 
-- [ ] **Client Mount Configuration:**
-  - [ ] Execute client playbook or add mount entry in `/etc/fstab`:
+- [x] **Client Mount Configuration:**
+  - [x] Execute client playbook or add mount entry in `/etc/fstab`:
     ```ini
-    192.168.1.103:/storage/media/games /home/michael/Emulation nfs4 _netdev,auto,nofail,soft,intr,rsize=1048576,wsize=1048576 0 0
+    192.168.1.103:/games /home/michael/Emulation nfs4 _netdev,auto,nofail,soft,intr,rsize=1048576,wsize=1048576 0 0
     ```
-  - [ ] Verify mount access: `ls -la /home/michael/Emulation/roms/ps2`.
+  - [x] Verify mount access: `ls -la /home/michael/Emulation/roms/ps2`.
 - [ ] **PCSX2 Flatpak Integration:**
-  - [ ] Apply Flatpak permission override:
+  - [x] Apply Flatpak permission override:
     ```bash
     flatpak override --user --filesystem=/home/michael/Emulation net.pcsx2.PCSX2
     ```
