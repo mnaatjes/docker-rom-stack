@@ -52,6 +52,7 @@ services:
       - ${DATA_DIR:-./data}/romm/config:/romm/config
       - ${MEDIA_DIR:-/mnt/nas/media}/games:/library
       - ${MEDIA_DIR:-/mnt/nas/media}/games/saves:/romm/saves
+      - ./patches/igdb_handler.py:/backend/handler/metadata/igdb_handler.py:ro
     ports:
       - "${ROMM_PORT:-8082}:8080"
 
