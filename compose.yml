@@ -1,0 +1,72 @@
+---
+# ==============================================================================
+# Docker ROM Stack (ROM Automation, Management, & In-Browser Emulation)
+# Adheres to Homelab Systems Lifecycle (HSL), ADR 0025, and ADR 0001 Standards
+# ==============================================================================
+
+services:
+  romm-db:
+    image: mariadb:11.4
+    container_name: romm-db
+    restart: unless-stopped
+    environment:
+      - MARIADB_ROOT_PASSWORD=${DB_ROOT_PASSWD:-romm_root_secret_change_me}
+      - MARIADB_DATABASE=${DB_NAME:-romm}
+      - MARIADB_USER=${DB_USER:-romm-user}
+      - MARIADB_PASSWORD=${DB_PASSWD:-romm_secret_change_me}
+      - TZ=${TZ:-America/Detroit}
+    volumes:
+      - ${DATA_DIR:-./data}/mysql:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+
+  romm:
+    image: ghcr.io/rommapp/romm:3.7.2
+    container_name: romm
+    restart: unless-stopped
+    depends_on:
+      romm-db:
+        condition: service_healthy
+    environment:
+      - ROMM_AUTH_SECRET_KEY=${ROMM_AUTH_SECRET_KEY:-changeme_generate_random_key_64_chars}
+      - ROMM_BASE_PATH=${ROMM_BASE_PATH:-}
+      - DB_HOST=romm-db
+      - DB_NAME=${DB_NAME:-romm}
+      - DB_USER=${DB_USER:-romm-user}
+      - DB_PASSWD=${DB_PASSWD:-romm_secret_change_me}
+      - IGDB_CLIENT_ID=${IGDB_CLIENT_ID:-}
+      - IGDB_CLIENT_SECRET=${IGDB_CLIENT_SECRET:-}
+      - STEAMGRIDDB_API_KEY=${STEAMGRIDDB_API_KEY:-}
+      - MOBYGAMES_API_KEY=${MOBYGAMES_API_KEY:-}
+      - HASHLIB_API_KEY=${HASHLIB_API_KEY:-}
+      - PUID=${PUID:-999}
+      - PGID=${PGID:-110}
+      - TZ=${TZ:-America/Detroit}
+    volumes:
+      - ${DATA_DIR:-./data}/romm/resources:/romm/resources
+      - ${DATA_DIR:-./data}/romm/redis_data:/redis_data
+      - ${DATA_DIR:-./data}/romm/config:/romm/config
+      - ${MEDIA_DIR:-/mnt/nas/media}/games:/romm/library
+      - ${MEDIA_DIR:-/mnt/nas/media}/games/saves:/romm/saves
+    ports:
+      - "${ROMM_PORT:-8082}:8080"
+
+  gamarr:
+    image: ghcr.io/gamarr/gamarr:latest
+    container_name: gamarr
+    restart: unless-stopped
+    environment:
+      - PUID=${PUID:-999}
+      - PGID=${PGID:-110}
+      - TZ=${TZ:-America/Detroit}
+    volumes:
+      - ${DATA_DIR:-./data}/gamarr:/config
+      - ${MEDIA_DIR:-/mnt/nas/media}:/media
+      - ${MEDIA_DIR:-/mnt/nas/media}/downloads:/downloads
+      - ${MEDIA_DIR:-/mnt/nas/media}/games:/games
+    ports:
+      - "${GAMARR_PORT:-8790}:8787"
