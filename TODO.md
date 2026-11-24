@@ -77,8 +77,8 @@ Governed by:
   ```
 - [x] **Firmware Migration:** Move discovered PS2 BIOS files from `/storage/media/audio/PCSX2/ps2_bios/` into `/storage/media/games/bios/ps2/`.
 - [x] **Game ISO Migration:** Move `THPS3.iso` and `Metal Gear Solid 2.iso` from `/storage/media/audio/PCSX2/` into `/storage/media/games/roms/ps2/`.
-- [ ] **Export Refresh:** Verify NFS export rules in `/etc/exports` and execute `exportfs -ra`.
-- [ ] **NFS Validation:** Verify exports visible on network: `showmount -e 192.168.1.103`.
+- [x] **Export Refresh:** Verify NFS export rules in `/etc/exports` and execute `exportfs -ra`.
+- [x] **NFS Validation:** Verify exports visible on network: `showmount -e 192.168.1.103`.
 
 ---
 
