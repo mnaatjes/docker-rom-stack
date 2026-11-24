@@ -68,15 +68,15 @@ Governed by:
 
 *To be applied by operator via Ansible or manual runbook.*
 
-- [ ] **Directory Provisioning:** Create underlying storage skeleton on `prd-nas-01.lan`:
+- [x] **Directory Provisioning:** Create underlying storage skeleton on `prd-nas-01.lan`:
   ```bash
   mkdir -p /storage/media/games/{roms/ps2,roms/snes,roms/gba,bios,saves}
   mkdir -p /storage/media/downloads/complete/roms
   chown -R 999:110 /storage/media/games /storage/media/downloads/complete/roms
   chmod -R 775 /storage/media/games /storage/media/downloads/complete/roms
   ```
-- [ ] **Firmware Migration:** Move discovered PS2 BIOS files from `/storage/media/audio/PCSX2/ps2_bios/` into `/storage/media/games/bios/ps2/`.
-- [ ] **Game ISO Migration:** Move `THPS3.iso` and `Metal Gear Solid 2.iso` from `/storage/media/audio/PCSX2/` into `/storage/media/games/roms/ps2/`.
+- [x] **Firmware Migration:** Move discovered PS2 BIOS files from `/storage/media/audio/PCSX2/ps2_bios/` into `/storage/media/games/bios/ps2/`.
+- [x] **Game ISO Migration:** Move `THPS3.iso` and `Metal Gear Solid 2.iso` from `/storage/media/audio/PCSX2/` into `/storage/media/games/roms/ps2/`.
 - [ ] **Export Refresh:** Verify NFS export rules in `/etc/exports` and execute `exportfs -ra`.
 - [ ] **NFS Validation:** Verify exports visible on network: `showmount -e 192.168.1.103`.
 
