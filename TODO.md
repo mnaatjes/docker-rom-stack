@@ -104,17 +104,17 @@ Governed by:
 
 ## Phase 5: Pipeline Integration & Cross-Stack Verification
 
-- [ ] **Transmission Integration:**
-  - [ ] In Gamarr settings, register Download Client:
+- [x] **Transmission Integration:**
+  - [x] In Gamarr settings, register Download Client:
     - Type: Transmission
     - Host: `192.168.1.52`
     - Port: `9091`
     - Category: `roms`
     - Directory: `/media/downloads/complete/roms`
-  - [ ] Test RPC connection and verify authentication.
-- [ ] **Prowlarr Torznab Integration:**
-  - [ ] In Prowlarr, configure Gamarr sync profile or add Torznab category mapping (Console/1000, PC/4000).
-  - [ ] Verify search queries route through Gluetun HTTP proxy (`192.168.1.52:8888`).
+  - [x] Test RPC connection and verify authentication.
+- [x] **Prowlarr Torznab Integration:**
+  - [x] In Prowlarr/Gamarr, configure Torznab indexers with category mapping (Console/1000, PC/4000).
+  - [x] Verify search queries route through Gluetun HTTP proxy (`192.168.1.52:8888`).
 - [ ] **RomM Configuration:**
   - [ ] Complete initial setup wizard at `http://192.168.1.52:8082`.
   - [ ] Authenticate Twitch IGDB API credentials.
